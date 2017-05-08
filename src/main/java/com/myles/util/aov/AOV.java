@@ -213,11 +213,11 @@ public class AOV {
                 String country = properties.getJSONObject("office").getString("country");
 
                 Opportunity opp = new Opportunity();
-                opp.setId(id);
-                opp.setTitle(title);
-                opp.setCompany(company);
-                opp.setDuration(duration);
-                opp.setCountry(country);
+                opp._id = id;
+                opp._title = title; 
+                opp._company = company; 
+                opp._duration = duration;
+                opp._country = country; 
                 opps.add(opp);
             }
 
@@ -238,11 +238,11 @@ public class AOV {
             int duration = properties.getInt("duration");
             String country = properties.getJSONObject("home_lc").getString("country");
 
-            opp.setId(id);
-            opp.setTitle(title);
-            opp.setCompany(company);
-            opp.setDuration(duration);
-            opp.setCountry(country);
+            opp._id = id;
+            opp._title = title;
+            opp._company = company;
+            opp._duration = duration;
+            opp._country = country;
 
         } catch (JSONException e) {
             e.printStackTrace();
