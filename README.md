@@ -1,35 +1,29 @@
 # AIESEC Opportunity Viewer
 
-## How to install
+## Prequisition
 
-1. Set environment variable $AOV_HOME to directory
-
-    `export $AOV_HOME=/path/to/aov/directory`
-
-1. Add $AOV_HOME/bin to system path
-
-1. Config aov.config
-
-1. Run the executable
-
-    `aov --help`
+Ensure java runtime is installed in host machine.
 
 ## Usage
 
+1. Search for GEP
+
+    `./aov.bat -gep`
+
 1. Search for US Opportunity
 
-    `aov -country us`
+    `./aov.bat -country us`
 
 1. Search for Canada Opportunity
 
-    `aov -country ca`
+    `./aov.bat -country ca`
 
 1. Search for keyword Developer
 
-    `aov -keyword developer`
+    `./aov.bat -keyword developer`
 
-1. Show opportunity detail( opp id 817356)
+1. Show opportunity detail(e.g. opp id 817356)
 
-    `aov -show 817356`
+    `./aov.bat -show 817356`
 
 
