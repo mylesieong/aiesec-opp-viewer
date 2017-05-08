@@ -268,7 +268,7 @@ public class AOV {
 				Skill s = new Skill();
 				s._name = skillsJson.getJSONObject(i).getString("name");
 				s._option= skillsJson.getJSONObject(i).getString("option");
-				s._level= skillsJson.getJSONObject(i).getInt("level");
+				//s._level= skillsJson.getJSONObject(i).getInt("level");
 			    opp._skills.add(s);
 			}
 			
