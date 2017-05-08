@@ -215,7 +215,7 @@ public class AOV {
 				opp._title = properties.getString("title");
 				opp._company = properties.getJSONObject("branch").getString("name");
 				opp._duration = properties.getInt("duration");
-				opp._country = properties.getJSONObject("home_lc").getString("country");
+				opp._country = properties.getJSONObject("office").getString("country");
                 opps.add(opp);
             }
 

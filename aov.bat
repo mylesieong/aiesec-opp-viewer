@@ -1,0 +1,1 @@
+java -cp target/aiesec-opp-viewer-1.0-SNAPSHOT.jar com.myles.util.aov.App %1 %2
