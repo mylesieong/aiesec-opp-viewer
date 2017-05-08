@@ -1,5 +1,9 @@
 package com.myles.util.aov;
 
+import com.myles.util.aov.Opportunity.Manager;
+import com.myles.util.aov.Opportunity.Skill;
+import com.myles.util.aov.Opportunity.Background;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -249,6 +253,33 @@ public class AOV {
             opp._createTime = properties.getString("created_at");
             opp._updateTime = properties.getString("updated_at");
 			
+			/* Read managers */
+			JSONArray managersJson = properties.getJSONArray("managers");
+			for (int i = 0 ; i < managersJson.length(); i++ ){
+				Manager m = new Manager();
+				m._fullName = managersJson.getJSONObject(i).getString("full_name");
+				m._email= managersJson.getJSONObject(i).getString("email");
+			    opp._managers.add(m);
+			}
+			
+			/* Read Skills */
+			JSONArray skillsJson = properties.getJSONArray("skills");
+			for (int i = 0 ; i < skillsJson.length(); i++ ){
+				Skill s = new Skill();
+				s._name = skillsJson.getJSONObject(i).getString("name");
+				s._option= skillsJson.getJSONObject(i).getString("option");
+				s._level= skillsJson.getJSONObject(i).getInt("level");
+			    opp._skills.add(s);
+			}
+			
+			/* Read Background */
+			JSONArray backgroundsJson = properties.getJSONArray("backgrounds");
+			for (int i = 0 ; i < backgroundsJson.length(); i++ ){
+				Background b = new Background();
+				b._name = backgroundsJson.getJSONObject(i).getString("name");
+				b._option= backgroundsJson.getJSONObject(i).getString("option");
+			    opp._backgrounds.add(b);
+			}
 
         } catch (JSONException e) {
             e.printStackTrace();

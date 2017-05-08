@@ -66,21 +66,21 @@ public class Opportunity {
 		    
 			for (int i = 0; i < _managers.size() ; i++ ){
 				output = output + "\nManagers no." + i + ":"
-					+ "\nName:\t\t" + _managers.get(i)._fullName
-					+ "\nEmail:\t\t" + _managers.get(i)._email;
+					+ "\n\tName:\t" + _managers.get(i)._fullName
+					+ "\n\tEmail:\t" + _managers.get(i)._email;
 			}
 			
 			for (int i = 0; i < _skills.size() ; i++ ){
 				output = output + "\nSkill no." + i + ":"
-					+ "\nName:\t\t" + _skills.get(i)._name
-					+ "\nOption:\t\t" + _skills.get(i)._option
-					+ "\nLevel:\t\t" + _skills.get(i)._level;
+					+ "\n\tName:\t" + _skills.get(i)._name
+					+ "\n\tOption:\t" + _skills.get(i)._option
+					+ "\n\tLevel:\t" + _skills.get(i)._level;
 			}
 			
 			for (int i = 0; i < _backgrounds.size() ; i++ ){
 				output = output + "\nBackground no." + i + ":"
-					+ "\nName:\t\t" + _backgrounds.get(i)._name
-					+ "\nOption:\t\t" + _backgrounds.get(i)._option;
+					+ "\n\tName:\t" + _backgrounds.get(i)._name
+					+ "\n\tOption:\t" + _backgrounds.get(i)._option;
 			}
 
         }
@@ -102,18 +102,18 @@ public class Opportunity {
         return output;
     }
 
-    public class Manager {
+    public static class Manager {
         public String _fullName;
         public String _email;
     }
 
-    public class Skill {
+    public static class Skill {
         public String _name;
         public String _option;
         public int _level;
     }
 
-    public class Background {
+    public static class Background {
         public String _name;
         public String _option;
     }
