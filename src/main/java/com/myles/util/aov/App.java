@@ -15,6 +15,10 @@ public class App {
                 aov.help();                       //aov -help
             }
             
+            if (args[0].compareTo("-gep") == 0){
+                aov.gep();                       //aov -gep
+            }
+
         }else if (args.length == 2){
             
             if (args[0].compareTo("-country") == 0 ){
