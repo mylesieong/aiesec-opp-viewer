@@ -55,9 +55,9 @@ public class AOV {
                 }
             }
         }
-        List<Opportunity> opps = extractFeatureFromJson(jsonResponse);
+        List<Opportunity> opps = searchLevelExtractionFromJson(jsonResponse);
         for (int i = 0; i < opps.size(); i++ ){
-            System.out.println(opps.get(i));
+            System.out.println(i + "\t" + opps.get(i).toString(Opportunity.BRIEF_STYLE));
         }
     }
     
@@ -83,7 +83,7 @@ public class AOV {
         return output.toString();
     }
 
-    private List<Opportunity> extractFeatureFromJson(String json) {
+    private List<Opportunity> searchLevelExtractionFromJson(String json) {
         ArrayList<Opportunity> opps = new ArrayList<Opportunity>();
         try {
             JSONObject baseJsonResponse = new JSONObject(json);
@@ -95,6 +95,9 @@ public class AOV {
 
                 int id = properties.getInt("id");
                 String title = properties.getString("title");
+                String company = properties.getJSONObject("branch").getString("name");
+                int duration = properties.getInt("duration");
+                String country = properties.getJSONObject("office").getString("country");
                 // JSONArray authorList = properties.getJSONArray("authors");
                 // ArrayList<String> authors = new ArrayList<String>();
                 // for (int j = 0; j < authorList.length(); j++) {
@@ -105,6 +108,9 @@ public class AOV {
                 Opportunity opp = new Opportunity();
                 opp.setId(id);
                 opp.setTitle(title);
+                opp.setCompany(company);
+                opp.setDuration(duration);
+                opp.setCountry(country);
                 opps.add(opp);
             }
 
