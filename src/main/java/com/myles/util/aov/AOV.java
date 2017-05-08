@@ -206,23 +206,18 @@ public class AOV {
             for (int i = 0; i < featureArray.length(); i++) {
                 JSONObject properties = featureArray.getJSONObject(i);
 
-                int id = properties.getInt("id");
-                String title = properties.getString("title");
-                String company = properties.getJSONObject("branch").getString("name");
-                int duration = properties.getInt("duration");
-                String country = properties.getJSONObject("office").getString("country");
-
                 Opportunity opp = new Opportunity();
-                opp._id = id;
-                opp._title = title; 
-                opp._company = company; 
-                opp._duration = duration;
-                opp._country = country; 
+				opp._id = properties.getInt("id");
+				opp._title = properties.getString("title");
+				opp._company = properties.getJSONObject("branch").getString("name");
+				opp._duration = properties.getInt("duration");
+				opp._country = properties.getJSONObject("home_lc").getString("country");
                 opps.add(opp);
             }
 
         } catch (JSONException e) {
             e.printStackTrace();
+			System.out.println(json);
         }
         return opps;
     }
@@ -232,20 +227,32 @@ public class AOV {
         try {
             JSONObject properties = new JSONObject(json);
 
-            int id = properties.getInt("id");
-            String title = properties.getString("title");
-            String company = properties.getJSONObject("branch").getString("name");
-            int duration = properties.getInt("duration");
-            String country = properties.getJSONObject("home_lc").getString("country");
+            /* Brief member */
+            opp._id = properties.getInt("id");
+            opp._title = properties.getString("title");
+            opp._company = properties.getJSONObject("branch").getString("name");
+            opp._duration = properties.getInt("duration");
+            opp._country = properties.getJSONObject("home_lc").getString("country");
 
-            opp._id = id;
-            opp._title = title;
-            opp._company = company;
-            opp._duration = duration;
-            opp._country = country;
+            /* Detail member */
+            opp._views = properties.getInt("views");;
+            opp._applicationCloseDate = properties.getString("applications_close_date");
+            opp._homeLC = properties.getJSONObject("home_lc").getString("full_name");
+            opp._visaLink = properties.getJSONObject("legal_info").getString("visa_link");
+            opp._visaType = properties.getJSONObject("legal_info").getString("visa_type");
+            opp._visaDuration = properties.getJSONObject("legal_info").getString("visa_duration");
+            opp._city = properties.getJSONObject("role_info").getString("city");
+            opp._selectProcess = properties.getJSONObject("role_info").getString("selection_process");
+            opp._salary = properties.getJSONObject("specifics_info").getInt("salary");
+            opp._salaryCcy = properties.getJSONObject("specifics_info").getJSONObject("salary_currency").getString("name");
+            opp._salaryCcyCode = properties.getJSONObject("specifics_info").getJSONObject("salary_currency").getInt("numeric_code");
+            opp._createTime = properties.getString("created_at");
+            opp._updateTime = properties.getString("updated_at");
+			
 
         } catch (JSONException e) {
             e.printStackTrace();
+			System.out.println(json);
         }
         return opp;
     }
