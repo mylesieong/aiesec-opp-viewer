@@ -66,7 +66,39 @@ public class AOV {
     }
     
     public void showOpportunity(String oppId){
-        System.out.println("AOV:showOpportunity");
+        String urlString = "https://gis-api.aiesec.org/v2/opportunities/" + oppId + ".json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493";
+        String jsonResponse = "";
+        HttpURLConnection urlConnection = null;
+        InputStream inputStream = null;
+
+        try {
+            URL url = new URL(urlString);
+            urlConnection = (HttpURLConnection) url.openConnection();
+            urlConnection.setRequestMethod("GET");
+            urlConnection.setReadTimeout(10000 /* milliseconds */);
+            urlConnection.setConnectTimeout(15000 /* milliseconds */);
+            urlConnection.connect();
+            if (urlConnection.getResponseCode() == 200) {
+                inputStream = urlConnection.getInputStream();
+                jsonResponse = readFromStream(inputStream);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (urlConnection != null) {
+                urlConnection.disconnect();
+            }
+            if (inputStream != null) {
+                // function must handle java.io.IOException here
+                try {
+                    inputStream.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        Opportunity opp = detailLevelExtractionFromJson(jsonResponse);
+        System.out.println(opp.toString(Opportunity.BRIEF_STYLE));
     }
 
     private String readFromStream(InputStream inputStream) throws IOException {
@@ -118,6 +150,29 @@ public class AOV {
             e.printStackTrace();
         }
         return opps;
+    }
+    
+    private Opportunity detailLevelExtractionFromJson(String json){
+        Opportunity opp = new Opportunity();
+        try {
+            JSONObject properties = new JSONObject(json);
+
+            int id = properties.getInt("id");
+            String title = properties.getString("title");
+            String company = properties.getJSONObject("branch").getString("name");
+            int duration = properties.getInt("duration");
+            String country = properties.getJSONObject("home_lc").getString("country");
+
+            opp.setId(id);
+            opp.setTitle(title);
+            opp.setCompany(company);
+            opp.setDuration(duration);
+            opp.setCountry(country);
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return opp;
     }
     
 }
