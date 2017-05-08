@@ -4,7 +4,7 @@
 
 1. Set environment variable $AOV_HOME to directory
 
-    `export $AOV_HOME=/path/to/aov/directory
+    `export $AOV_HOME=/path/to/aov/directory`
 
 1. Add $AOV_HOME/bin to system path
 
