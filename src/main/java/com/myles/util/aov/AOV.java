@@ -31,7 +31,7 @@ public class AOV {
     }
 
     public void gep(){
-        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&filters%5Bis_gep%5D=true";
+        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&filters%5Bis_gep%5D=true&per_page=1000&only=data";
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
@@ -75,7 +75,7 @@ public class AOV {
         }else if (country.compareToIgnoreCase("ca") == 0){
             countryCode = "1554";
         }
-        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&filters[home_mcs][]=" + countryCode + "&filters[programmes][]=2&filters[last_interaction][from]=2017-01-30&earliest_start_date=2017-5-7&sort=earliest_start_date";
+        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&filters[home_mcs][]=" + countryCode + "&filters[programmes][]=2&per_page=1000&only-data";
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
@@ -113,7 +113,7 @@ public class AOV {
     }
     
     public void searchByKeyword(String keyword){
-        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&q=" + keyword + "&filters[last_interaction][from]=2017-01-30&earliest_start_date=2017-5-7&sort=earliest_start_date";
+        String urlString = "https://gis-api.aiesec.org/v2/opportunities.json?access_token=e316ebe109dd84ed16734e5161a2d236d0a7e6daf499941f7c110078e3c75493&q=" + keyword + "&per_page=1000&only=data";
         String jsonResponse = "";
         HttpURLConnection urlConnection = null;
         InputStream inputStream = null;
