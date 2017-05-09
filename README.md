@@ -1,4 +1,4 @@
-# AIESEC Opportunity Viewer
+# AIESEC Opportunity Viewer (AOV)
 
 ## Prequisition
 
@@ -27,3 +27,6 @@ Ensure java runtime is installed in host machine.
     `./aov.bat -show 817356`
 
 
+## Note
+
+* AOV consumes AIESEC GIS API with root service of v2(production), but people who are interested in testing the feature of the API can alter it with v1(testing) and configure the api url according to the [GIS API Document](http://apidocs.aies.ec)
